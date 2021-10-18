@@ -5,9 +5,9 @@ import Chess.Color;
 import boardgame.Board;
 import boardgame.Position;
 
-public class Bishop extends ChessPiece {
+public class Queen extends ChessPiece {
 
-    public Bishop(Board board, Color color) {
+    public Queen(Board board, Color color) {
         super(board, color);
     }
 
@@ -16,6 +16,54 @@ public class Bishop extends ChessPiece {
         boolean [][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
 
         Position p = new Position(0,0);
+
+        //above
+        p.setValues(position.getRow() - 1 , position.getColumn());
+
+        while (getBoard().positionExists(p) && !getBoard().therIsAPiece(p)){
+            mat[p.getRow()][p.getColumn()] = true;
+            p.setRow(p.getRow() - 1);
+        }
+
+        if(getBoard().positionExists(p) && isThereOpponentPiece(p)){
+            mat[p.getRow()][p.getColumn()] = true;
+        }
+
+        //below
+        p.setValues(position.getRow() + 1, position.getColumn());
+
+        while (getBoard().positionExists(p) && !getBoard().therIsAPiece(p)){
+            mat[p.getRow()] [p.getColumn()] = true;
+            p.setRow(p.getRow() + 1);
+        }
+
+        if(getBoard().positionExists(p) && isThereOpponentPiece(p)){
+            mat[p.getRow()][p.getColumn()] = true;
+        }
+
+        //right
+        p.setValues(position.getRow(), position.getColumn() + 1);
+
+        while (getBoard().positionExists(p) && !getBoard().therIsAPiece(p)){
+            mat[p.getRow()] [p.getColumn()] = true;
+            p.setColumn(p.getColumn() + 1);
+        }
+
+        if(getBoard().positionExists(p) && isThereOpponentPiece(p)){
+            mat[p.getRow()][p.getColumn()] = true;
+        }
+
+        //left
+        p.setValues(position.getRow(), position.getColumn() - 1);
+
+        while (getBoard().positionExists(p) && !getBoard().therIsAPiece(p)){
+            mat[p.getRow()][p.getColumn()] = true;
+            p.setColumn(p.getColumn() - 1);
+        }
+
+        if(getBoard().positionExists(p) && isThereOpponentPiece(p)){
+            mat[p.getRow()][p.getColumn()] = true;
+        }
 
         //northwest
         p.setValues(position.getRow() - 1 , position.getColumn() - 1);
@@ -66,12 +114,13 @@ public class Bishop extends ChessPiece {
         }
 
 
+
         return mat;
     }
 
     @Override
     public String toString(){
-        return "B";
+        return "Q";
     }
 
 }
