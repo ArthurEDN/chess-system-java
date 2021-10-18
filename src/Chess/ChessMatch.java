@@ -15,6 +15,7 @@ public class ChessMatch {
     private Color currentPlayer;
     private Board board;
     private boolean check;
+    private boolean isCheckMate;
     
     private List<Piece> piecesOnTheBoard= new ArrayList<>();
     private List<Piece> capturedPieces= new ArrayList<>();
@@ -36,6 +37,10 @@ public class ChessMatch {
 
     public boolean getCheck(){
         return check;
+    }
+
+    public boolean getisCheckMate(){
+        return isCheckMate;
     }
 
     public ChessPiece[][] getPieces(){
@@ -95,7 +100,11 @@ public class ChessMatch {
 
         check =(testCheckState(oponnentColor(currentPlayer))) ? true : false;
 
-        nexTurn();
+        if(testIsCheckMate(oponnentColor(currentPlayer))){
+            isCheckMate = true;
+        } else {
+            nexTurn();
+        }
 
         return (ChessPiece) capturedPiece;
     }
@@ -159,6 +168,39 @@ public class ChessMatch {
             }
         }
         return false;
+    }
+
+    private boolean testIsCheckMate(Color color){
+        if(!testCheckState(color)){
+            return false;
+        }
+
+        List<Piece> alliedPieces = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == color).collect(Collectors.toList());
+
+        for(Piece p : alliedPieces){
+            boolean[][] mat = p.possibleMoves();
+
+            for(int i = 0; i < board.getRows(); i++){
+                for(int j = 0; j < board.getColumns(); j++){
+                    if(mat[i][j]){
+                        Position source = ((ChessPiece)p).getChessPosition().toPosition();
+                        Position target = new Position(i,j);
+
+                        Piece capturedPiece = makeMove(source, target);
+
+                        boolean testCheck = testCheckState(color);
+                        undoMove(source, target, capturedPiece);
+
+                        if(!testCheck){
+                            return false;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
     private void initialSetup(){
