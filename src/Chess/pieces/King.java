@@ -83,6 +83,7 @@ public class King extends ChessPiece {
         //#SPECIAL MOVE CASTLING
         //(WHITE PIECES POINT OF VIEW)
         if(getMoveCount() == 0 && !chessMatch.getCheck()){
+
             //#SPECIAL MOVE KINGSIDE ROOK
             Position kingRightSideRook = new Position(position.getRow(), position.getColumn() + 3);
             if(testCastlingMove(kingRightSideRook)){
