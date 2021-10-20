@@ -1,8 +1,3 @@
-# chess-system-java
-
-Chess system made in Java, with checks of all possible moves, check and chekmate.
-In addition to supporting all special moves(Castling, En Passant and Promotion) through the terminal.
-
 <h1 align="center">
   🕹 Chess System 
 </h1>
@@ -10,7 +5,7 @@ In addition to supporting all special moves(Castling, En Passant and Promotion) 
 
 ## :rocket:About the project
 
-Chess system with with checks of all possible moves, check and chekmate.
+Chess system with checks of all possible moves, check state and chekmate.
 In addition to supporting all special moves(Castling, En Passant and Promotion) through the terminal.
 
 The user enters the point of origin of the piece he wants to move, from there the possible movements will be colored, and the target point of movement for the piece.
