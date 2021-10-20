@@ -15,7 +15,7 @@ In addition to supporting all special moves(Castling, En Passant and Promotion) 
 
 The user enters the point of origin of the piece he wants to move, from there the possible movements will be colored, and the target point of movement for the piece.
 
-Em caso de ocorrer a jogada especial: "Promoção", o usuário deve digitar para qual peça deseja que o peão seja transformado:
+In case of a special move: "Promotion", the user must type to which piece he wants the pawn to be transformed:
 
 - B to transformation into Bishop.
 - N to transformation into Knight.
@@ -25,5 +25,5 @@ Em caso de ocorrer a jogada especial: "Promoção", o usuário deve digitar para
 
 ## :computer: Technologies used:
 
-- `Javas`
+- `Java`
 
